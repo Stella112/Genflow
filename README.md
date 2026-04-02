@@ -1,92 +1,127 @@
-# ⚖️ Verdikta — The Internet's AI Arbitration Layer
+# ⚡ GenFlow — AI-Powered Programmable Escrow
 
-**"Any dispute. Any evidence. AI consensus. Final verdict."**
+**"Define a condition. AI verifies it. Funds release automatically."**
 
-Verdikta is a universal dispute resolution protocol built on [GenLayer](https://genlayer.com). It allows **anyone** — freelancers, online shoppers, friends with bets, DAOs, businesses — to open a case, submit evidence (URLs, text, screenshots), and have AI validators reach consensus on a fair verdict.
+GenFlow is a programmable escrow protocol built on [GenLayer StudioNet](https://studio.genlayer.com). Anyone can create an escrow flow with a plain-English condition linked to any public URL — crypto prices, GitHub PRs, flight data, weather events, or Reddit posts. AI validators fetch the data, evaluate the condition, and trigger payouts automatically. No middlemen. No manual claims.
 
-No lawyers. No waiting weeks. No centralized arbiters.
+> **Live on StudioNet** — Contract: `0xc05A4011e072c34658Eb9a49EDFD5e2c938F9631`
+
+---
+
+## ✅ Verified Live Demos
+
+| Flow | URL | Condition | Result |
+|---|---|---|---|
+| BTC Price Check | Binance API | BTC > $60,000 | ✅ TRIGGERED ($68,413) |
+| GitHub PR Merge | GitHub filtered view | PR is merged | ✅ TRIGGERED |
+| Earthquake Cover | USGS Feed | M5.0+ quake today | ✅ TRIGGERED (M7.8 Indonesia) |
 
 ---
 
 ## 🚀 How It Works
 
-1. **Open a Case** → Describe your dispute and provide evidence URLs
-2. **Respondent Replies** → The other party submits counter-evidence
-3. **AI Consensus** → Validators fetch web evidence, analyze both sides, reach consensus via GenLayer's Optimistic Democracy
-4. **Final Verdict** → Immutable ruling stored on-chain with reasoning, confidence score, and recommendation
+1. **Create a Flow** → Connect MetaMask, fill in a URL + condition in plain English
+2. **AI Monitors** → Click "Run AI Verification" — GenLayer validators fetch the URL in real-time
+3. **Consensus reached** → 5 independent AI validators agree (Optimistic Democracy)
+4. **Payout triggers** → Contract state updates to `TRIGGERED`, funds marked for release
+
+---
 
 ## 🧠 GenLayer Features Used
 
-| Feature | How Verdikta Uses It |
+| Feature | How GenFlow Uses It |
 |---|---|
-| `gl.get_webpage()` | Fetches real-time evidence from any URL (product pages, status pages, news, social media) |
-| `gl.exec_prompt()` | AI analyzes evidence and renders impartial judgment |
-| `gl.eq_principle_prompt_comparative()` | Multiple validators must agree on the verdict — true consensus |
-| Optimistic Democracy | Decentralized consensus ensures no single AI can dictate a ruling |
+| `gl.nondet.web.render(url)` | Fetches real-time data from any public URL |
+| `gl.exec_prompt()` | AI evaluates the condition in plain English |
+| `gl.eq_principle_prompt_comparative()` | 5 validators must reach consensus before triggering |
+| Optimistic Democracy | Decentralized AI consensus — no single point of failure |
+
+---
 
 ## 📂 Project Structure
 
 ```
-genbradury/
+genflow/
 ├── contracts/
-│   └── verdikta.py          # GenLayer Intelligent Contract
-├── index.html                # Frontend entry point
-├── style.css                 # Design system (legal-tech noir)
-├── app.js                    # Application logic & demo mode
-├── genlayer-client.js        # GenLayer RPC client
-└── README.md                 # This file
+│   └── genflow.py          # GenLayer Intelligent Contract (Python)
+├── index.html              # Frontend — dashboard, create flow, wallet modal
+├── style.css               # Premium dark terminal design
+├── app.js                  # Flow logic, templates, MetaMask integration
+├── genlayer-client.js      # StudioNet RPC client (read + MetaMask write)
+└── README.md
 ```
+
+---
 
 ## 🖥️ Running Locally
 
-### Frontend (Demo Mode)
 ```bash
-# Option 1: Use any static file server
-npx -y serve .
+# Clone the repo
+git clone https://github.com/Stella112/Genflow.git
+cd Genflow
 
-# Option 2: Python
-python -m http.server 8000
+# Serve with Python
+python -m http.server 5173
 
-# Option 3: VS Code Live Server extension
+# Open in browser
+# http://localhost:5173
 ```
 
-The app starts in **Demo Mode** with 5 pre-loaded showcase cases. No blockchain connection required.
+Connect MetaMask → it will auto-switch to **GenLayer StudioNet (chain 61999)**.
 
-### Smart Contract (GenLayer Studio)
+---
 
-1. Open [GenLayer Studio](https://studio.genlayer.com)
-2. Upload `contracts/verdikta.py`
-3. Deploy the contract
-4. Use the Studio UI to interact with the contract functions
+## 🛠️ Creating Your Own Flow
 
-### Smart Contract (Bradbury Testnet)
+1. Click **+ New Flow**
+2. Choose a template or fill in manually:
+   - **IF** → paste any public URL (API, webpage, raw file)
+   - **AND** → describe the condition in plain English
+   - **THEN** → set payee address + amount in GEN
+3. Click **Create Flow** → MetaMask pops up → approve
+4. Click **Run AI Verification** → watch validators check the URL live
 
-1. Install the GenLayer CLI: `pip install genlayer`
-2. Deploy: `genlayer deploy contracts/verdikta.py --network bradbury`
-3. Update `genlayer-client.js` with the contract address and switch to `testnet` network
+---
 
-## 🎯 Demo Scenarios
+## 🛡️ Template Library
 
-| Case | Category | Dispute |
+| Category | Example | URL |
 |---|---|---|
-| Logo Never Delivered | 💼 Freelance | Designer ghosted after $500 deposit |
-| False Advertising | 🛒 E-Commerce | "100% Organic" product contains synthetics |
-| World Cup Bet | 🎲 Bet | Friend won't pay $100 bet on Argentina |
-| SLA Violation | ☁️ Service | Cloud provider broke 99.9% uptime guarantee |
-| DAO Budget Misuse | 🏛️ DAO | Treasury spent without governance vote |
+| ₿ Crypto | BTC above $60k | `api.binance.com` (Binance API) |
+| ⬡ GitHub | PR merged / release shipped | `api.github.com` |
+| 🛡 Insurance | Earthquake M5.0+ | `earthquake.usgs.gov` (USGS) |
+| 🛡 Insurance | Rainfall > 10mm | `api.open-meteo.com` |
+| ✈ Flight | Flight cancelled | `api.adsb.lol` (ADS-B Exchange) |
+| 📦 Delivery | Package delivered | UPS / FedEx tracking page |
+| 💬 Social | Reddit post score | Reddit `.json` API |
+
+---
 
 ## 🏗️ Architecture
 
 ```
-User → Frontend (HTML/CSS/JS) → GenLayer RPC → Intelligent Contract
-                                                     ↓
-                                         gl.get_webpage() → Evidence
-                                         gl.exec_prompt() → AI Analysis
-                                         gl.eq_principle() → Consensus
-                                                     ↓
-                                              Immutable Verdict
+User (MetaMask) → Frontend → genlayer-js SDK
+                                    │
+                    ┌───────────────┴──────────────────┐
+                    │ Reads: gen_call → StudioNet RPC   │
+                    │ Writes: eth_sendTransaction       │
+                    │         (signed by MetaMask)      │
+                    └───────────────┬──────────────────┘
+                                    │
+                          GenLayer Consensus Contract
+                                    │
+                    ┌───────────────┴──────────────────┐
+                    │  5 AI Validators                  │
+                    │  gl.nondet.web.render(url)        │
+                    │  gl.eq_principle_prompt()         │
+                    │  → TRUE / FALSE                   │
+                    └───────────────┬──────────────────┘
+                                    │
+                          Flow state: ACTIVE → TRIGGERED
 ```
+
+---
 
 ## 📜 License
 
-MIT License — Built for the GenLayer Hackathon 2025
+MIT License — Built for the GenLayer Hackathon 2026
