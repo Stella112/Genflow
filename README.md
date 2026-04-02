@@ -1,4 +1,4 @@
-# ⚡ GenFlow — AI-Powered Programmable Escrow
+#  GenFlow — AI-Powered Programmable Escrow
 
 **"Define a condition. AI verifies it. Funds release automatically."**
 
@@ -8,7 +8,7 @@ GenFlow is a programmable escrow protocol built on [GenLayer StudioNet](https://
 
 ---
 
-## ✅ Verified Live Demos
+##  Verified Live Demos
 
 | Flow | URL | Condition | Result |
 |---|---|---|---|
@@ -18,7 +18,7 @@ GenFlow is a programmable escrow protocol built on [GenLayer StudioNet](https://
 
 ---
 
-## 🚀 How It Works
+## How It Works
 
 1. **Create a Flow** → Connect MetaMask, fill in a URL + condition in plain English
 2. **AI Monitors** → Click "Run AI Verification" — GenLayer validators fetch the URL in real-time
@@ -27,7 +27,7 @@ GenFlow is a programmable escrow protocol built on [GenLayer StudioNet](https://
 
 ---
 
-## 🧠 GenLayer Features Used
+## GenLayer Features Used
 
 | Feature | How GenFlow Uses It |
 |---|---|
@@ -38,7 +38,7 @@ GenFlow is a programmable escrow protocol built on [GenLayer StudioNet](https://
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 genflow/
@@ -53,7 +53,7 @@ genflow/
 
 ---
 
-## 🖥️ Running Locally
+##  Running Locally
 
 ```bash
 # Clone the repo
@@ -71,7 +71,7 @@ Connect MetaMask → it will auto-switch to **GenLayer StudioNet (chain 61999)**
 
 ---
 
-## 🛠️ Creating Your Own Flow
+## Creating Your Own Flow
 
 1. Click **+ New Flow**
 2. Choose a template or fill in manually:
@@ -83,7 +83,7 @@ Connect MetaMask → it will auto-switch to **GenLayer StudioNet (chain 61999)**
 
 ---
 
-## 🛡️ Template Library
+## Template Library
 
 | Category | Example | URL |
 |---|---|---|
@@ -97,7 +97,7 @@ Connect MetaMask → it will auto-switch to **GenLayer StudioNet (chain 61999)**
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 User (MetaMask) → Frontend → genlayer-js SDK
