@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenFlow — AI-Powered Programmable Escrow</title>
+    <meta name="description" content="Automate payments based on real-world events. Write a condition in plain English. GenLayer AI reads the web and triggers payment automatically.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- ═══════════ NAVIGATION ═══════════ -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" id="nav-logo">
+                <div class="logo-glyph">⬡</div>
+                <span class="logo-text">GenFlow</span>
+                <span class="logo-tag">BETA</span>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-view="dashboard" id="nav-dashboard">Dashboard</a>
+                <a href="#" class="nav-link" data-view="create" id="nav-create">+ New Flow</a>
+                <a href="#" class="nav-link" data-view="about" id="nav-about">How It Works</a>
+            </div>
+            <div class="nav-actions">
+                <div class="network-indicator">
+                    <span class="net-dot"></span>
+                    <span>StudioNet</span>
+                </div>
+                <button class="btn btn-sm btn-wallet" id="connect-wallet-btn">
+                    <span id="wallet-btn-icon">🦊</span>
+                    <span id="wallet-btn-label">Connect Wallet</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════ MAIN ═══════════ -->
+    <main id="app-main">
+
+        <!-- ──── DASHBOARD ──── -->
+        <section id="view-dashboard" class="view active">
+            <div class="hero">
+                <div class="hero-badge">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-dot"></span>
+                    GenLayer AI Consensus · 4 Validators
+                </div>
+                <h1 class="hero-title">
+                    If this happens,<br>
+                    <span class="gradient-text">Send this money.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Point to any website. Write a condition in plain English. GenLayer validators read the web like a human and release funds automatically — no oracles, no middlemen.
+                </p>
+
+                <!-- IF/AND/THEN example strip -->
+                <div class="ifthen-strip">
+                    <div class="ifthen-block">
+                        <span class="ifthen-label">IF</span>
+                        <span class="ifthen-url">flightaware.com/UA2847</span>
+                    </div>
+                    <div class="ifthen-arrow">+</div>
+                    <div class="ifthen-block">
+                        <span class="ifthen-label">AND</span>
+                        <span class="ifthen-cond">"flight delayed &gt; 2 hours"</span>
+                    </div>
+                    <div class="ifthen-arrow">→</div>
+                    <div class="ifthen-block ifthen-then">
+                        <span class="ifthen-label">THEN</span>
+                        <span class="ifthen-pay">Send 200 GEN instantly</span>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" id="hero-create-btn">⚡ Create Flow</button>
+                    <button class="btn btn-outline btn-lg" id="hero-browse-btn">◈ Browse Flows</button>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-pill">
+                        <span class="stat-num" id="stat-total">4</span>
+                        <span class="stat-lbl">Total Flows</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-pill">
+                        <span class="stat-num" id="stat-active">3</span>
+                        <span class="stat-lbl">Active</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-pill">
+                        <span class="stat-num" id="stat-triggered">1</span>
+                        <span class="stat-lbl">Triggered</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-pill">
+                        <span class="stat-num" style="font-size:12px">0xc05A…9631</span>
+                        <span class="stat-lbl">Contract</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flows -->
+            <div class="flows-section">
+                <div class="section-header">
+                    <h2 class="section-title"><span style="color:var(--accent)">◈</span> Escrow Flows</h2>
+                    <button class="btn btn-sm btn-ghost" id="refresh-btn"><span id="refresh-icon">↻</span> Refresh</button>
+                </div>
+                <div id="flows-grid" class="flows-grid"></div>
+            </div>
+        </section>
+
+        <!-- ──── CREATE FLOW ──── -->
+        <section id="view-create" class="view">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="form-title">⚡ Create New Flow</h2>
+                    <p class="form-subtitle">Define your condition in plain English. AI validators monitor the web and release funds automatically.</p>
+                </div>
+
+                <!-- Templates -->
+                <div class="templates-row">
+                    <span class="templates-label">Quick fill:</span>
+                    <button class="template-chip chip-insurance" data-template="weather_insurance">🛡 Rainfall Insurance</button>
+                    <button class="template-chip chip-insurance" data-template="earthquake_insurance">🌏 Earthquake Cover</button>
+                    <button class="template-chip chip-insurance" data-template="crypto_crash">📉 Crypto Crash Cover</button>
+                    <button class="template-chip chip-insurance" data-template="flight_insurance">✈ Flight Cancel Cover</button>
+                </div>
+                <div class="templates-row" style="margin-top:6px">
+                    <span class="templates-label">Social:</span>
+                    <button class="template-chip chip-social" data-template="farcaster_mention">💬 Farcaster Cast</button>
+                    <button class="template-chip chip-social" data-template="reddit_sentiment">🟠 Reddit Viral</button>
+                    <button class="template-chip chip-social" data-template="github_release">⬡ GitHub Release</button>
+                </div>
+                <div class="templates-row" style="margin-top:6px">
+                    <span class="templates-label">Standard:</span>
+                    <button class="template-chip" data-template="flight">✈ Flight</button>
+                    <button class="template-chip" data-template="github">⬡ GitHub PR</button>
+                    <button class="template-chip" data-template="delivery">📦 Delivery</button>
+                    <button class="template-chip" data-template="crypto">₿ Crypto</button>
+                </div>
+
+                <form id="create-form" class="gf-form">
+                    <div class="ifthen-form-preview">
+                        <div class="ifthen-row">
+                            <span class="if-badge">IF</span>
+                            <input type="url" id="f-url" class="form-input font-mono" placeholder="https://flightaware.com/live/flight/UAL2847" required>
+                        </div>
+                        <div class="ifthen-row">
+                            <span class="if-badge and-badge">AND</span>
+                            <textarea id="f-condition" class="form-textarea" rows="2" placeholder='"Flight UA2847 is delayed by more than 2 hours"' required></textarea>
+                        </div>
+                        <div class="ifthen-row">
+                            <span class="if-badge then-badge">THEN</span>
+                            <div class="then-fields">
+                                <input type="text" id="f-payee" class="form-input font-mono" placeholder="Recipient 0x...">
+                                <div class="then-amount"><input type="number" id="f-amount" class="form-input" placeholder="0" min="0"><span class="then-unit">GEN</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="f-title">Flow Title (for display)</label>
+                        <input type="text" id="f-title" class="form-input" placeholder='e.g. "Flight UA2847 Delay Insurance"' required>
+                    </div>
+                    <div class="form-group" id="creator-group">
+                        <label class="form-label" for="f-creator">Your Address <span class="form-hint-inline">(auto-filled if wallet connected)</span></label>
+                        <input type="text" id="f-creator" class="form-input font-mono" placeholder="0x...">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-ghost" id="form-back-btn">← Back</button>
+                        <button type="submit" class="btn btn-primary btn-lg" id="form-submit-btn">
+                            <span id="submit-icon">⚡</span> <span id="submit-label">Create Flow</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ──── HOW IT WORKS ──── -->
+        <section id="view-about" class="view">
+            <div class="about-container">
+                <h2 class="about-title">How <span class="gradient-text">GenFlow</span> Works</h2>
+                <p class="about-subtitle">The world's first AI-consensus escrow — no oracles, no middlemen</p>
+                <div class="steps-grid">
+                    <div class="step-card"><div class="step-num">01</div><div class="step-icon-lg">🔒</div><h3>Lock Funds</h3><p>Deposit GEN into the smart contract. Funds are secured until the condition is evaluated.</p></div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-card"><div class="step-num">02</div><div class="step-icon-lg">🌐</div><h3>AI Reads Web</h3><p>4 validators independently fetch your URL using <code>gl.nondet.web.render</code> and read live data.</p></div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-card"><div class="step-num">03</div><div class="step-icon-lg">🧠</div><h3>Consensus</h3><p>Validators must agree on the result via <code>gl.eq_principle.prompt_comparative</code>. Majority determines truth.</p></div>
+                    <div class="step-arrow">→</div>
+                    <div class="step-card"><div class="step-num">04</div><div class="step-icon-lg">⚡</div><h3>Auto Pay</h3><p>When consensus confirms the condition is met, payment is triggered instantly and immutably on-chain.</p></div>
+                </div>
+                <div class="use-cases-grid">
+                    <div class="use-case-card"><div class="uc-icon">✈</div><h3>Flight Insurance</h3><p>URL: FlightAware<br>Condition: "Delayed &gt; 2 hours"<br>→ Instant payout to traveler</p></div>
+                    <div class="use-case-card"><div class="uc-icon">⬡</div><h3>Freelance Escrow</h3><p>URL: GitHub Pull Request<br>Condition: "PR is merged"<br>→ Dev gets paid instantly</p></div>
+                    <div class="use-case-card"><div class="uc-icon">📦</div><h3>E-Commerce</h3><p>URL: UPS/FedEx Tracking<br>Condition: "Status = Delivered"<br>→ Seller gets paid</p></div>
+                    <div class="use-case-card"><div class="uc-icon">₿</div><h3>Crypto Triggers</h3><p>URL: CoinGecko<br>Condition: "BTC &gt; $100k"<br>→ DCA payout released</p></div>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card"><code>gl.nondet.web.render()</code><p>Live web fetching by each validator independently</p></div>
+                    <div class="tech-card"><code>gl.nondet.exec_prompt()</code><p>LLM reads the page and evaluates the condition</p></div>
+                    <div class="tech-card"><code>gl.eq_principle.prompt_comparative()</code><p>Multi-validator consensus — majority rules</p></div>
+                    <div class="tech-card"><code>Contract: 0xc05A…9631</code><p>Live on GenLayer StudioNet · 4 active flows</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════ FLOW DETAIL MODAL ═══════════ -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="flow-modal">
+            <button class="modal-close" id="modal-close-btn">×</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════ CONNECT WALLET MODAL ═══════════ -->
+    <div class="modal-overlay" id="wallet-modal-overlay">
+        <div class="modal wallet-modal" id="wallet-modal">
+            <button class="modal-close" id="wallet-modal-close">×</button>
+            <div class="wallet-modal-header">
+                <div class="wallet-modal-icon">◈</div>
+                <h2>Connect to GenFlow</h2>
+                <p>Connect MetaMask to get your address, or enter a Studio address directly.</p>
+            </div>
+            <div class="wallet-options">
+                <button class="wallet-option-btn wallet-main-btn" id="metamask-btn">
+                    <span class="wo-icon">🦊</span>
+                    <div class="wo-text">
+                        <strong>Connect MetaMask</strong>
+                        <span>Auto-fills your address · No signing required</span>
+                    </div>
+                    <span class="wo-arrow">→</span>
+                </button>
+            </div>
+            <div class="wallet-divider"><span>or enter address manually</span></div>
+            <div class="form-group" style="margin-bottom:14px">
+                <input type="text" id="addr-input" class="form-input font-mono" placeholder="0x..." autocomplete="off">
+            </div>
+            <button class="btn btn-primary" id="wallet-connect-btn" style="width:100%">Connect & Start →</button>
+            <div class="wallet-hint-box" style="margin-top:14px">
+                <span style="color:var(--accent-2)">ℹ</span>
+                Find your address at <a href="https://studio.genlayer.com" target="_blank" style="color:var(--accent-2)">studio.genlayer.com</a> → Account.
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════ AI CONSENSUS OVERLAY ═══════════ -->
+    <div class="consensus-overlay" id="consensus-overlay" style="display:none">
+        <div class="consensus-box">
+            <div class="validators-row">
+                <div class="validator-node" id="vn-0"><div class="vn-ring"></div><span>V1</span></div>
+                <div class="validator-node" id="vn-1"><div class="vn-ring"></div><span>V2</span></div>
+                <div class="validator-node" id="vn-2"><div class="vn-ring"></div><span>V3</span></div>
+                <div class="validator-node" id="vn-3"><div class="vn-ring"></div><span>V4</span></div>
+            </div>
+            <h3 class="consensus-title">AI Consensus in Progress</h3>
+            <p class="consensus-sub" id="consensus-msg">Validators fetching trigger URL…</p>
+            <div class="consensus-log" id="consensus-log"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════ TOAST ═══════════ -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="genlayer-client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
